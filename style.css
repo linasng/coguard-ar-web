@@ -1,0 +1,43 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #4CAF50, #45a049);
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 { color: #fff; }
+button {
+    background: #2196F3;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+button:hover { background: #0b7dda; }
+
+#notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: red;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+}
+#canvas {
+    display: none; /* Awalnya hidden */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    pointer-events: none; /* Biar tidak ganggu klik AR */
+}
+
+#home { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+a-scene { height: 100vh; width: 100%; }

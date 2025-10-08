@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoGuard AR - Konservasi Lingkungan</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- AR.js untuk WebAR -->
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <!-- TensorFlow.js untuk ML -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.10.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.3"></script> <!-- Model deteksi objek (adaptasi untuk sampah) -->
+</head>
+<body>
+    <div id="home">
+        <h1>EcoGuard AR Web</h1>
+        <p>Selamat datang! Arahkan kamera HP untuk fitur AR & ML.</p>
+        <button onclick="startGeofencing()">Fitur 1: Zona Sensitif (Geofencing & AR Overlay)</button>
+        <button onclick="startSimulation()">Fitur 2: Visualisasi Dampak (AR Simulation & ML)</button>
+        <div id="notification"></div>
+    </div>
+
+    <!-- AR Scene untuk Overlay (Fitur 1) -->
+    <a-scene id="ar-scene" embedded arjs="sourceType: webcam;" style="display: none;">
+        <a-marker preset="hiro">
+            <a-box position="0 0.5 0" material="color: red;" scale="1 0.1 1" animation="property: rotation; to: 0 360 0; loop: true; dur: 10000"></a-box> <!-- Batas visual merah -->
+            <a-text value="Zona Terlarang! Jangan Masuk." position="0 0 -1" color="yellow"></a-text>
+        </a-marker>
+        <a-entity camera></a-entity>
+    </a-scene>
+
+    <!-- AR Scene untuk Simulation (Fitur 2) -->
+    <a-scene id="sim-scene" embedded arjs="sourceType: webcam;" style="display: none;">
+        <a-marker preset="hiro">
+            <a-sphere position="0 0.5 0" material="color: gray;" scale="0.5 0.5 0.5" animation="property: scale; to: 2 2 2; loop: true; dur: 5000"></a-sphere> <!-- Model sampah 3D -->
+            <a-text value="Dampak: Sampah Plastik 450 Tahun Hilang!" position="0 -0.5 -1" color="red"></a-text>
+        </a-marker>
+        <a-entity camera></a-entity>
+    </a-scene>
+
+    <video id="video" style="display: none;"></video>
+    <canvas id="canvas" style="display: none;"></canvas>
+
+    <script src="script.js"></script>
+</body>
+</html>
